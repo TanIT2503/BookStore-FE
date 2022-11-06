@@ -1,0 +1,57 @@
+.top-content{
+    padding-top: 0;
+}
+.main-logo{
+    width: 200px;
+}
+
+.right-element, .action-menu{
+    display: flex !important;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+}
+.logo__content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login__container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+}
+
+.button__container{
+    display: flex;
+    background: var(--accent-color2);
+    border-radius: 50px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (min-device-width: 1024px) {
+    .navbar__container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.button__content{
+    border-radius: 40px;
+    width: auto;
+    height: 40px;
+    /*margin-right: 10px;*/
+}
+.button__register{
+    background: var(--accent-color2);
+}
+.button__login:hover{
+    background: #b28966;
+}
+.button__register:hover{
+    background: #ceb8a6;
+}

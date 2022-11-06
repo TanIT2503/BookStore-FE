@@ -1,0 +1,45 @@
+.container{
+    background: #f3f2ec;
+    width: 100%;
+    border-radius: 15px;
+}
+.modal{
+    --mdb-modal-width: 600px;
+}
+
+p{
+    margin: 0;
+    padding: 0;
+}
+
+.button__content{
+    width: 100%;
+    border-radius: 50px;
+    height: 50px;
+}
+.button__oauth{
+    width: 58px;
+    height: 58px;
+    border-radius: 20%;
+}
+.button__content:hover{
+    background: #b28966;
+}
+
+.input__content {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    background: #e7e4da;
+    border-radius: 50px;
+    border: none;
+    height: 45px;
+}
+
+.input__content:focus, .input__content:hover{
+    border: none;
+    box-shadow: 0px 0px 21px 0px rgba(190, 190, 173, 0.3);
+}
+::placeholder{
+    color: #6c757d;
+}

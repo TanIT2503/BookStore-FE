@@ -1,0 +1,94 @@
+<div id="header-wrap">
+
+    <div class="top-content">
+        <div class="container top-content__container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="right-element">
+
+                        <a href="#" class="user-account for-buy"><i class="icon icon-user"></i><span>Account</span></a>
+                        <a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0 $)</span></a>
+
+                        <div class="action-menu ">
+                            <div class="search-bar">
+                                <a href="#" class="search-button search-toggle" data-selector="#header-wrap">
+                                    <i class="icon icon-search"></i>
+                                </a>
+                                <form role="search" method="get" class="search-box">
+                                    <input class="search-field text search-input" placeholder="Search" type="search">
+                                </form>
+                            </div>
+                            <div class="login__container">
+                                <label class="button__container">
+                                    <button data-bs-toggle="modal" data-bs-target="#loginModal" type="button"
+                                        class="button__content button__login">Login</button>
+                                    <button data-bs-toggle="modal" data-bs-target="#registerModal" type="button"
+                                        class="button__content button__register">Register</button>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--top-right-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--top-content-->
+
+    <header id="header">
+        <div class="container">
+            <div class="row navbar__container">
+
+                <div class="col-md-2 logo__content">
+                    <div class="main-logo">
+                        <a href="index.html"><img src="/assets/images/main-logo.png" alt="logo"></a>
+                    </div>
+                </div>
+                <div class="col-md-10 ">
+                    <nav id="navbar">
+                        <div class="main-menu stellarnav">
+                            <ul class="menu-list">
+                                <li class="menu-item has-sub">
+                                    <a href="#pages" class="nav-link" data-effect="Pages">Category book</a>
+                                    <ul>
+                                        <li class="active"><a href="index.html">Home</a></li>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="styles.html">Styles</a></li>
+                                        <li><a href="blog.html">Blog</a></li>
+                                        <li><a href="single-post.html">Post Single</a></li>
+                                        <li><a routerLink="/bookstore/store">Our Store</a></li>
+                                        <li><a href="single-product.html">Product Single</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="thank-you.html">Thank You</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item"><a href="#about" class="nav-link" data-effect="About">Best selling
+                                        book
+                                    </a></li>
+                                <li class="menu-item"><a href="#popular-books" class="nav-link"
+                                        data-effect="Shop">Promotion</a></li>
+                                <li class="menu-item"><a href="#latest-blog" class="nav-link"
+                                        data-effect="Articles">Special discount</a></li>
+                            </ul>
+
+                            <div class="hamburger">
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                            </div>
+
+                        </div>
+                    </nav>
+
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+</div>
+<!--header-wrap-->
+
+<app-login></app-login>
+<app-register></app-register>
