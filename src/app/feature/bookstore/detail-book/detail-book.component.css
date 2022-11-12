@@ -1,0 +1,10 @@
+.button__content{
+    border-radius: 40px;
+    width: auto;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.button__content:hover{
+    background: #b28b6c;
+}

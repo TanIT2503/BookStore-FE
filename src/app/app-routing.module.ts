@@ -6,7 +6,7 @@ const routes: Routes = [
   {path: 'account',
     loadChildren: () => import('./feature/account/account.module').then(module => module.AccountModule)
   },
-  {path: 'bookstore',
+  {path: '',
     loadChildren: () => import('./feature/bookstore/bookstore.module').then(module => module.BookstoreModule)
   },
   {path: '',

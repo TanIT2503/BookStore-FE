@@ -1,0 +1,20 @@
+.button__content{
+    border-radius: 40px;
+    width: auto;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.button__content:hover{
+    background: #b28b6c;
+}
+
+.product-style figcaption {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.product-style figcaption p {
+    margin-bottom: 5px;
+}

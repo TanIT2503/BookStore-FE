@@ -24,6 +24,8 @@
 
 }
 
+
+
 .button__container{
     display: flex;
     background: var(--accent-color2);
@@ -54,4 +56,8 @@
 }
 .button__register:hover{
     background: #ceb8a6;
+}
+
+.dropdown-menu li{
+    padding-right: 0;
 }

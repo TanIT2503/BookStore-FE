@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+    clientId: '829473933775-07fphj51090lmu0ji8ifti07sce6fbn2.apps.googleusercontent.com',
+    firebaseConfig : {
+        apiKey: 'AIzaSyDiX0IGa2Bwt9nO9nXV0ViMqgG2pdCpv5g',
+        authDomain: 'booksaw-store.firebaseapp.com',
+        projectId: 'booksaw-store',
+        storageBucket: 'booksaw-store.appspot.com',
+        messagingSenderId: '930883202560',
+        appId: '1:930883202560:web:947aed835b54c986e2f2e5',
+        measurementId: 'G-1PJ5LDLW48'
+    }
 };
 
 /*

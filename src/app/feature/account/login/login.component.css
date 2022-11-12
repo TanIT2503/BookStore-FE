@@ -6,6 +6,18 @@
 .modal{
     --mdb-modal-width: 600px;
 }
+.nav__pill, .nav__pill h1{
+    font-family: var(--body-font);
+    font-weight: bold;
+    color: var(--body-text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    margin-bottom: 0.5rem;
+}
 
 p{
     margin: 0;
