@@ -1,106 +1,264 @@
-<!--&lt;!&ndash; Modal &ndash;&gt;-->
-<!--<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="container">-->
-<!--                &lt;!&ndash; Pills navs &ndash;&gt;-->
-<!--                <div class="nav__pill">-->
-<!--                    <h1>Register</h1>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; Pills navs &ndash;&gt;-->
+<!-- Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="container">
+                <!-- Pills navs -->
+                <div class="nav__pill">
+                    <h1>Register</h1>
+                </div>
+                <!-- Pills navs -->
 
-<!--                &lt;!&ndash; Pills content &ndash;&gt;-->
-<!--                <div class="tab-content">-->
-<!--                    &lt;!&ndash;        Login&ndash;&gt;-->
-<!--                    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">-->
-<!--                        <form>-->
-<!--                            <div class="text-center">-->
-<!--                                <p>Sign in with:</p>-->
-<!--                                <button type="button" class="button button__oauth mx-1">-->
-<!--                                    <i class="fab fa-facebook-f"></i>-->
-<!--                                </button>-->
+                <!-- Pills content -->
+                <div class="tab-content">
+                    <!--        Login-->
+                    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                        <form [formGroup]="createForm">
+                            <div class="text-center">
+                                <p>Sign in with:</p>
+                                <button type="button" class="button button__oauth mx-1">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
 
-<!--                                <button type="button" class="button button__oauth mx-1">-->
-<!--                                    <i class="fab fa-google"></i>-->
-<!--                                </button>-->
+                                <button type="button" class="button button__oauth mx-1">
+                                    <i class="fab fa-google"></i>
+                                </button>
 
-<!--                                <button type="button" class="button button__oauth mx-1">-->
-<!--                                    <i class="fab fa-twitter"></i>-->
-<!--                                </button>-->
+                                <button type="button" class="button button__oauth mx-1">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
 
-<!--                                <button type="button" class="button button__oauth mx-1">-->
-<!--                                    <i class="fab fa-github"></i>-->
-<!--                                </button>-->
-<!--                            </div>-->
+                                <button type="button" class="button button__oauth mx-1">
+                                    <i class="fab fa-github"></i>
+                                </button>
+                            </div>
 
-<!--                            <p class="text-center">or:</p>-->
+                            <p class="text-center">or:</p>
 
-<!--                            <div class="row">-->
-<!--                                <div class="col-md-6">-->
-<!--                                    &lt;!&ndash; Username input &ndash;&gt;-->
-<!--                                    <div class="form-outline mb-4">-->
-<!--                                        <input type="text" id="registerUsername" class="input__content"-->
-<!--                                               placeholder="Username" />-->
-<!--                                    </div>-->
+                            <!-- Name input -->
+                            <div formGroupName="customer" class="text__content">
+                                <div class="item">
+                                    <span class="icon"><i class="fa-solid fa-font"></i></span>
+                                    <div class="form-outline">
+                                        <input type="text" id="registerName" class="input__content"
+                                               placeholder="Fullname" formControlName="customerName" autofocus />
+                                    </div>
+                                </div>
+                                <div
+                                        *ngIf="createForm.get('customer').get('customerName')?.invalid && (createForm.get('customer').get('customerName')?.touched||createForm.get('customer').get('customerName')?.dirty)">
+                                    <div [hidden]="!createForm.get('customer').get('customerName').errors.required"
+                                         class="cus-error">
+                                        <span class="form-text mess">
+                                            Họ và tên không được để trống.</span>
+                                    </div>
+                                </div>
+                            </div>
 
-<!--                                    &lt;!&ndash; Password input &ndash;&gt;-->
-<!--                                    <div class="form-outline mb-4">-->
-<!--                                        <input type="password" id="registerPassword" class="input__content"-->
-<!--                                               placeholder="Password" />-->
-<!--                                    </div>-->
+                            <div class="row">
+                                <div class="col-md-6" formGroupName="account">
+                                    <!-- Username input -->
+                                    <div class="text__content">
+                                        <div class="item">
+                                            <span class="icon"><i class="fa-solid fa-user"></i></span>
+                                            <div class="form-outline">
+                                                <input type="text" id="registerUsername" class="input__content"
+                                                       placeholder="Username" formControlName="username" />
+                                            </div>
+                                        </div>
+                                        <div
+                                                *ngIf="createForm.get('account').get('username')?.invalid && (createForm.get('account').get('username')?.touched||createForm.get('account').get('username')?.dirty)">
+                                            <div [hidden]="!createForm.get('account').get('username').errors.required"
+                                                 class="cus-error">
+                                                <span class="form-text mess">
+                                                    Tên tài khoản không được để trống.</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                                *ngIf="createForm.get('account').get('username')?.invalid && (createForm.get('account').get('username')?.touched||createForm.get('account').get('username')?.dirty)">
+                                            <div [hidden]="!createForm.get('account').get('username').hasError('maxlength')"
+                                                 class="cus-error">
+                                                <small class="form-text mess">
+                                                    Tên tài khoản chỉ chứa tối đa 20 kí tự.</small>
+                                            </div>
+                                        </div>
+                                        <div
+                                                *ngIf="createForm.get('account').get('username')?.invalid && (createForm.get('account').get('username')?.touched||createForm.get('account').get('username')?.dirty)">
+                                            <div [hidden]="!createForm.get('account').get('username').errors.pattern"
+                                                 class="cus-error">
+                                                <small class="form-text mess">
+                                                    Tên tài khoản không được chứa kí tự hoa hoặc kí tự đặc biệt.</small>
+                                            </div>
+                                        </div>
+                                        <div class="cus-error">
+                                            <span class="form-text mess">
+                                                {{checkUsername}}</span>
+                                        </div>
+                                    </div>
 
-<!--                                    &lt;!&ndash; Repeat Password input &ndash;&gt;-->
-<!--                                    <div class="form-outline mb-4">-->
-<!--                                        <input type="password" id="registerRepeatPassword" class="input__content"-->
-<!--                                               placeholder="Repeat password" />-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="col-md-6">-->
-<!--                                    &lt;!&ndash; Name input &ndash;&gt;-->
-<!--                                    <div class="form-outline mb-4">-->
-<!--                                        <input type="text" id="registerName" class="input__content"-->
-<!--                                               placeholder="Fullname" />-->
-<!--                                    </div>-->
+                                    <!-- Password input -->
+                                    <div class="text__content">
+                                        <div class="item">
+                                            <span class="icon"><i class="fa-solid fa-key"></i></span>
+                                            <div class="form-outline">
+                                                <input type="password" id="registerPassword" class="input__content"
+                                                       placeholder="Ex: Password@123" formControlName="password" />
+                                            </div>
+                                        </div>
+                                        <div
+                                                *ngIf="createForm.get('account').get('password')?.invalid && (createForm.get('account').get('password')?.touched||createForm.get('account').get('password')?.dirty)">
+                                            <div [hidden]="!createForm.get('account').get('password').errors.required"
+                                                 class="cus-error">
+                                                <span class="form-text mess">
+                                                    Mật khẩu không được để trống.</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                                *ngIf="createForm.get('account').get('password')?.invalid && (createForm.get('account').get('password')?.touched||createForm.get('account').get('password')?.dirty)">
+                                            <div [hidden]="!createForm.get('account').get('password').hasError('maxlength')"
+                                                 class="cus-error">
+                                                <span class="form-text mess">
+                                                    Mật khẩu chỉ chứa tối đa 20 kí tự.</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                                *ngIf="createForm.get('account').get('password')?.invalid && (createForm.get('account').get('password')?.touched||createForm.get('account').get('password')?.dirty)">
+                                            <div [hidden]="!createForm.get('account').get('password').errors.pattern"
+                                                 class="cus-error">
+                                                <small class="form-text mess">
+                                                    Mật khẩu chưa đúng định dạng.</small>
+                                            </div>
+                                        </div>
+                                    </div>
 
-<!--                                    &lt;!&ndash; phone input &ndash;&gt;-->
-<!--                                    <div class="form-outline mb-4">-->
-<!--                                        <input type="email" id="registerPhone" class="input__content"-->
-<!--                                               placeholder="Phone" />-->
-<!--                                    </div>-->
+                                    <!-- Repeat Password input -->
+                                    <div class="text__content">
+                                        <div class="item">
+                                            <span class="icon"><i class="fa-solid fa-key"></i></span>
+                                            <div class="form-outline">
+                                                <input type="password" id="registerRepeatPassword" class="input__content"
+                                                       placeholder="Repeat password" formControlName="confirmPassword" />
+                                            </div>
+                                        </div>
+                                        <div class="cus-error">
+                                            <span class="form-text mess">
+                                                {{confirmPassCheck}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" formGroupName="customer">
 
-<!--                                    &lt;!&ndash; Email input &ndash;&gt;-->
-<!--                                    <div class="form-outline mb-4">-->
-<!--                                        <input type="email" id="registerEmail" class="input__content"-->
-<!--                                               placeholder="Email" />-->
-<!--                                    </div>-->
 
-<!--                                    &lt;!&ndash; Address input &ndash;&gt;-->
-<!--                                    <div class="form-outline mb-4">-->
-<!--                                        <input type="text" id="registerAddress" class="input__content"-->
-<!--                                               placeholder="Address" />-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                                    <!-- phone input -->
+                                    <div class="text__content">
+                                        <div class="item">
+                                            <span class="icon"><i class="fa-solid fa-phone"></i></span>
+                                            <div class="form-outline">
+                                                <input type="email" id="registerPhone" class="input__content"
+                                                       placeholder="Phone" formControlName="customerPhone" />
+                                            </div>
+                                        </div>
+                                        <div
+                                                *ngIf="createForm.get('customer').get('customerPhone')?.invalid && (createForm.get('customer').get('customerPhone')?.touched||createForm.get('customer').get('customerPhone')?.dirty)">
+                                            <div [hidden]="!createForm.get('customer').get('customerPhone').errors.required"
+                                                 class="cus-error">
+                                                <span class="form-text mess">
+                                                    Số điện thoại không được để trống.</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                                *ngIf="createForm.get('customer').get('customerPhone')?.invalid && (createForm.get('customer').get('customerPhone')?.touched||createForm.get('customer').get('customerPhone')?.dirty)">
+                                            <div [hidden]="!createForm.get('customer').get('customerPhone').errors.pattern"
+                                                 class="cus-error">
+                                                <span class="form-text mess">
+                                                    Số điện thoại chưa đúng định dạng.</span>
+                                            </div>
+                                        </div>
+                                    </div>
 
-<!--                            &lt;!&ndash; Checkbox &ndash;&gt;-->
-<!--                            <div class="form-check d-flex justify-content-center">-->
-<!--                                <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked-->
-<!--                                       aria-describedby="registerCheckHelpText" />-->
-<!--                                <label class="form-check-label" for="registerCheck">-->
-<!--                                    I have read and agree to the terms-->
-<!--                                </label>-->
-<!--                            </div>-->
+                                    <!-- Email input -->
+                                    <div class="text__content">
+                                        <div class="item">
+                                            <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                                            <div class="form-outline">
+                                                <input type="email" id="registerEmail" class="input__content"
+                                                       placeholder="Email" formControlName="customerEmail" />
+                                            </div>
+                                        </div>
+                                        <div
+                                                *ngIf="createForm.get('customer').get('customerEmail')?.invalid && (createForm.get('customer').get('customerEmail')?.touched||createForm.get('customer').get('customerEmail')?.dirty)">
+                                            <div [hidden]="!createForm.get('customer').get('customerEmail').errors.required"
+                                                 class="cus-error">
+                                                <span class="form-text mess">
+                                                    Email không được để trống.</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                                *ngIf="createForm.get('customer').get('customerEmail')?.invalid && (createForm.get('customer').get('customerEmail')?.touched||createForm.get('customer').get('customerEmail')?.dirty)">
+                                            <div [hidden]="!createForm.get('customer').get('customerEmail').errors.pattern"
+                                                 class="cus-error">
+                                                <span class="form-text mess">
+                                                    Email chưa đúng định dạng.</span>
+                                            </div>
+                                        </div>
+                                    </div>
 
-<!--                            &lt;!&ndash; Submit button &ndash;&gt;-->
-<!--                            <button type="submit" class="button button__content">Register</button>-->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;        Login&ndash;&gt;-->
+                                    <!-- Address input -->
+                                    <div class="text__content">
+                                        <div class="item">
+                                            <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
+                                            <div class="form-outline">
+                                                <input type="text" id="registerAddress" class="input__content"
+                                                       placeholder="Address" formControlName="customerAddress" />
+                                            </div>
+                                        </div>
+                                        <div
+                                                *ngIf="createForm.get('customer').get('customerAddress')?.invalid && (createForm.get('customer').get('customerAddress')?.touched||createForm.get('customer').get('customerAddress')?.dirty)">
+                                            <div [hidden]="!createForm.get('customer').get('customerAddress').errors.required"
+                                                 class="cus-error">
+                                                <span class="form-text mess">
+                                                    Địa chỉ không được để trống.</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                                *ngIf="createForm.get('customer').get('customerAddress')?.invalid && (createForm.get('customer').get('customerAddress')?.touched||createForm.get('customer').get('customerAddress')?.dirty)">
+                                            <div [hidden]="!createForm.get('customer').get('customerAddress').hasError('maxlength')"
+                                                 class="cus-error">
+                                                <span class="form-text mess">
+                                                    Địa chỉ chỉ chứa tối đa 60 kí tự.</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                                *ngIf="createForm.get('customer').get('customerAddress')?.invalid && (createForm.get('customer').get('customerAddress')?.touched||createForm.get('customer').get('customerAddress')?.dirty)">
+                                            <div [hidden]="!createForm.get('customer').get('customerAddress').hasError('minlength')"
+                                                 class="cus-error">
+                                                <span class="form-text mess">
+                                                    Địa chỉ chứa tối thiểu 5 kí tự.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-<!--                </div>-->
-<!--                &lt;!&ndash; Pills content &ndash;&gt;-->
+                            <!-- Checkbox -->
+                            <div class="form-check d-flex justify-content-center">
+                                <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
+                                       aria-describedby="registerCheckHelpText" />
+                                <label class="form-check-label" for="registerCheck">
+                                    I have read and agree to the terms
+                                </label>
+                            </div>
 
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+                            <!-- Submit button -->
+                            <button type="submit" class="button button__content" (click)="submit()"
+                                    [disabled]="!createForm.valid">Register</button>
+                        </form>
+                    </div>
+                    <!--        Login-->
+
+                </div>
+                <!-- Pills content -->
+
+            </div>
+        </div>
+    </div>
+</div>

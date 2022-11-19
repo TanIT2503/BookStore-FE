@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IAccount} from '../../model/account/iaccount';
+import {ICustomerAccount} from '../../model/account/icustomer-account';
 
 
 @Injectable({
@@ -19,12 +20,6 @@ export class AccountServiceService {
   getAllUsername(): Observable<string[]> {
     return this.http.get<string[]>(this.API_URL + '/list-Username');
   }
-  // NhiVP tao tai khoan cho nhan vien
-  // createAccount(employeeAccount: IEmployeeAccount): Observable<IEmployeeAccount> {
-  //   return this.http.post<IEmployeeAccount>(this.API_URL + '/create-Account', employeeAccount);}
-  //
-  // // AnDVH thay đổi mật khẩu
-  // public updatePassword(accountId: number, password: Password): Observable<void> {
-  //   return this.http.patch<void>(`${this.API_URL}/update/password/${accountId}`, password);
-  // }
+  createCustomerAccount(customerAccount: ICustomerAccount): Observable<ICustomerAccount> {
+    return this.http.post<ICustomerAccount>(this.API_URL + '/create-Customer-Account', customerAccount); }
 }

@@ -14,11 +14,9 @@ export class LoginComponent implements OnInit {
     username: string;
     password: string;
     roles: string[] = [];
-    errorMessage = '';
-
-    checkUserName = false;
-
-    checkPassWord = false;
+    checkUserName: string;
+    checkPassword: string;
+    errorMessage: string;
     isLoggedIn: boolean;
     urlImg: string;
     role: string;
@@ -69,12 +67,12 @@ export class LoginComponent implements OnInit {
             }
             , error => {
                 if (this.loginForm.value.username === '') {
-                    // this.errorMessage1 = 'Tài khoản không được để trống';
-                    this.checkUserName = true;
+                    this.checkUserName = 'Tài khoản không được để trống';
+                    this.checkUserName = '';
                 }
                 if (this.loginForm.value.password === '') {
-                    // this.errorMessage1 = 'Tài khoản không được để trống';
-                    this.checkPassWord = true;
+                    this.checkPassword = 'Tài khoản không được để trống';
+                    this.checkPassword = '';
                 }
                 console.log(error);
                 this.isLoggedIn = false;

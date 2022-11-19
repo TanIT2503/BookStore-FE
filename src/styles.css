@@ -1858,3 +1858,21 @@ footer#footer {
         width: 100%;
     }
 }
+
+.ngx-pagination .pagination-previous a::before, .ngx-pagination .pagination-previous.disabled::before, .ngx-pagination .pagination-next a::after, .ngx-pagination .pagination-next.disabled::after{
+    content: none !important;
+}
+
+.ngx-pagination .pagination-next:hover{
+    border-radius: 10px !important;
+}
+.ngx-pagination .current{
+    background: var(--secondary-color) !important;
+}
+.ngx-pagination li {
+    border-radius: 6px !important;
+}
+
+.ngx-pagination a:hover, .ngx-pagination button:hover{
+    border-radius: 6px !important;
+}

@@ -13,18 +13,32 @@ export class BookService {
 
     constructor(private http: HttpClient) {
     }
+    getBookById(id: number): Observable<IBook> {
+        return this.http.get<IBook>(`${this.API_URL}/${id}`);
+    }
 
     getTopAllBook(thePage: number, thePageSize: number): Observable<GetResponseBook> {
         const url = `${this.API_URL}` + `&page=${thePage}&size=${thePageSize}`;
         return this.http.get<GetResponseBook>(url);
     }
 
-    getTopNewBook(): Observable<IBook[]> {
-        return this.http.get<IBook[]>(`${this.API_URL}/latest`);
+    getTopNewBook(page: number): Observable<IBook[]> {
+        return this.http.get<IBook[]>(`${this.API_URL}/latest?page=` + page);
     }
 
     getAll(page: number, search: string): Observable<PageBook> {
         return this.http.get<PageBook>(this.API_URL + '?page=' + page + '&&search=' + search);
+    }
+
+    getAllBookByCategoryId(id: number, page: number): Observable<IBook[]> {
+        return this.http.get<IBook[]>(this.API_URL + `/category/${id}?page=` + page);
+    }
+    getAllBookByPromotion(page: number): Observable<IBook[]> {
+        return this.http.get<IBook[]>(this.API_URL + '/promotions');
+    }
+
+    searchBook(searchKey: string, page: number): Observable<IBook[]> {
+        return this.http.get<IBook[]>(this.API_URL + `/search/${searchKey}?page=` + page);
     }
 }
 

@@ -3,6 +3,8 @@ import {TokenStorageService} from '../../service/security/token-storage.service'
 import {Router} from '@angular/router';
 import {FormGroup} from '@angular/forms';
 import {NgOneTapService} from 'ng-google-one-tap';
+import {ICategory} from '../../model/book/icategory';
+import {CategoryService} from '../../service/book/category.service';
 
 @Component({
     selector: 'app-header',
@@ -11,8 +13,9 @@ import {NgOneTapService} from 'ng-google-one-tap';
 })
 export class HeaderComponent implements OnInit {
 
+    categoryList: ICategory[] = [];
     searchForm: FormGroup;
-
+    search: string;
     private roles: string[];
     isLoggedIn = false;
     roleAdmin = false;
@@ -20,11 +23,13 @@ export class HeaderComponent implements OnInit {
     userName: string;
     constructor(private tokenStorageService: TokenStorageService,
                 private router: Router,
-                private onetap: NgOneTapService,) { }
+                private onetap: NgOneTapService,
+                private categoryService: CategoryService) { }
 
     ngOnInit(): void {
         this.checkRole();
         this.loadLogin();
+        this.getAllCategory();
     }
     checkRole(): void{
         this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -58,10 +63,18 @@ export class HeaderComponent implements OnInit {
         });
 
     }
+
+    getAllCategory() {
+        this.categoryService.getAllCategory().subscribe(categoryList => {
+            this.categoryList = categoryList;
+        });
+    }
     logout() {
         this.tokenStorageService.signOut();
         window.location.assign('');
         this.router.navigateByUrl('');
     }
-
+    searchBook(value: string) {
+        this.router.navigateByUrl('/search/' + value);
+    }
 }

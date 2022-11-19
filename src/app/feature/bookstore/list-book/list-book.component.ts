@@ -15,8 +15,8 @@ export class ListBookComponent implements OnInit {
     bookList: IBook[] = [];
     books: IBook = {};
     id: number;
-    thePageNumber = 1;
-    thePageSize = 6;
+    page = 1;
+    size: number;
     theTotalElements: number;
     itemPerPage = 1;
     keywordSearch: undefined;
@@ -28,7 +28,8 @@ export class ListBookComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.getListTopBook();
+        // this.getListTopBook();
+        this.getAllTopBook(this.page);
     }
 
     getListCart() {
@@ -50,26 +51,41 @@ export class ListBookComponent implements OnInit {
     // }
 
     getListTopBook() {
-        this.bookService.getTopAllBook(this.thePageNumber - 1, this.thePageSize).subscribe(this.processResult());
+        // this.bookService.getTopAllBook(this.thePageNumber - 1, this.thePageSize).subscribe(this.processResult());
+    }
+    getAllTopBook(page: number) {
+        this.page = page;
+        this.bookService.getTopNewBook(this.page - 1).subscribe((data: any) => {
+                this.bookList = data.content;
+                this.size = data.size;
+                this.theTotalElements = data.totalElements;
+            },
+            () => {
+                this.page--;
+                this.getAllTopBook(this.page);
+            },
+            () => {
+            }
+        );
     }
 
-    processResult() {
-        return (data) => {
-            this.bookList = data.content; //
-            this.thePageNumber = data.number + 1;
-            this.thePageSize = data.size;
-            this.theTotalElements = data.totalElements;
-            this.processItemPerPage();
-        };
-    }
-
-    processItemPerPage() {
-        if (this.thePageNumber * this.thePageSize > this.theTotalElements) {
-            this.itemPerPage = this.theTotalElements;
-        } else {
-            this.itemPerPage = this.thePageNumber * this.thePageSize;
-        }
-    }
+    // processResult() {
+    //     return (data) => {
+    //         this.bookList = data.content; //
+    //         this.thePageNumber = data.number + 1;
+    //         this.thePageSize = data.size;
+    //         this.theTotalElements = data.totalElements;
+    //         this.processItemPerPage();
+    //     };
+    // }
+    //
+    // processItemPerPage() {
+    //     if (this.thePageNumber * this.thePageSize > this.theTotalElements) {
+    //         this.itemPerPage = this.theTotalElements;
+    //     } else {
+    //         this.itemPerPage = this.thePageNumber * this.thePageSize;
+    //     }
+    // }
 
     // search(value: string) {
     //     console.log(value);

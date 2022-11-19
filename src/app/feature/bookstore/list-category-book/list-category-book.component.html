@@ -1,4 +1,3 @@
-<app-billboard></app-billboard>
 <div>
     <div class="container">
         <div class="row">
@@ -18,8 +17,10 @@
 <section class="padding-large">
     <div class="container">
         <div class="row">
+
             <div class="products-grid grid">
-                <figure class="product-style" *ngFor="let book of bookList | paginate: {itemsPerPage: size, currentPage: page, totalItems: theTotalElements}">
+
+                <figure class="product-style" *ngFor="let book of bookList | paginate: {itemsPerPage: size, currentPage: page, totalItems: totalElements}; let i = index">
                     <img src="{{book.bookImage}}" alt="Books" class="product-item">
                     <figcaption>
                         <h3 class="name__text">{{book.bookName}}</h3>
@@ -34,7 +35,7 @@
 
         </div>
     </div>
-    <div *ngIf="theTotalElements > 6" style="display: flex; justify-content: center; align-items: center; margin-top: 30px">
-        <pagination-controls (pageChange)="getAllTopBook($event)"></pagination-controls>
+    <div *ngIf="totalElements > 4" style="display: flex; justify-content: center; align-items: center; margin-top: 30px">
+        <pagination-controls (pageChange)="getAllBookByCategoryId(id, $event)"></pagination-controls>
     </div>
 </section>

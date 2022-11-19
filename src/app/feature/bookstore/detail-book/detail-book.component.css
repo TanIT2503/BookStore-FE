@@ -8,3 +8,8 @@
 .button__content:hover{
     background: #b28b6c;
 }
+
+.old__price{
+    text-decoration-line: line-through;
+    padding-left: 10px;
+}

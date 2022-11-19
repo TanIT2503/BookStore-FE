@@ -55,3 +55,30 @@ p{
 ::placeholder{
     color: #6c757d;
 }
+.submit__error{
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+}
+.cus-error{
+    padding-left: 60px;
+    /*margin-top: 5px;*/
+}
+.text__content{
+    height: 80px;
+}
+.item{
+    /*height: 100px;*/
+    display: flex;
+}
+.icon{
+    background: var(--accent-color);
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}

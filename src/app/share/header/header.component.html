@@ -10,14 +10,14 @@
 
                         <div class="action-menu ">
                             <div class="search-bar">
-                                <a href="#" class="search-button search-toggle" data-selector="#header-wrap">
+                                <a  class="search-button search-toggle" data-selector="#header-wrap" (click)="searchBook(search)">
                                     <i class="icon icon-search"></i>
                                 </a>
                                 <div role="search" method="get" class="search-box">
-                                    <input class="search-field text search-input" placeholder="Search" type="search">
+                                    <input class="search-field text search-input" placeholder="Search" type="search" [(ngModel)]="search">
                                 </div>
                             </div>
-                            <a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0 $)</span></a>
+                            <a routerLink="/cart" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0 $)</span></a>
 
                             <div *ngIf="isLoggedIn">
 <!--                                <a href="#" class="user-account for-buy"><span>{{userName}}</span></a>-->
@@ -83,23 +83,15 @@
                                 <li class="menu-item"><a routerLink="" class="nav-link" data-effect="Home">Home
                                 </a></li>
                                 <li class="menu-item has-sub">
-                                    <a href="#pages" class="nav-link" data-effect="Pages">Category book</a>
+                                    <a class="nav-link" data-effect="Pages">Category book</a>
                                     <ul>
-                                        <li class="active"><a href="index.html">Home</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="styles.html">Styles</a></li>
-                                        <li><a href="blog.html">Blog</a></li>
-                                        <li><a href="single-post.html">Post Single</a></li>
-                                        <li><a routerLink="/bookstore/store">Our Store</a></li>
-                                        <li><a href="single-product.html">Product Single</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="thank-you.html">Thank You</a></li>
+                                        <li class="active"><a [routerLink]="['/category/', category.categoryId]" *ngFor="let category of categoryList">{{category.categoryName}}</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item"><a href="#about" class="nav-link" data-effect="About">Best selling
                                         book
                                     </a></li>
-                                <li class="menu-item"><a href="#popular-books" class="nav-link"
+                                <li class="menu-item"><a routerLink="/promotion" class="nav-link"
                                         data-effect="Shop">Promotion</a></li>
                                 <li class="menu-item"><a href="#latest-blog" class="nav-link"
                                         data-effect="Articles">Special discount</a></li>

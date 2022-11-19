@@ -19,11 +19,13 @@ import {authInterceptorProviders} from './helpers/auth.interceptor';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 import {APP_BASE_HREF} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { NgGoogleOneTapModule } from 'ng-google-one-tap';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { BookCartComponent } from './feature/cart/book-cart/book-cart.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +41,7 @@ import {AngularFireModule} from '@angular/fire';
         SpecialOfferComponent,
         SubscribeComponent,
         IndexComponent,
+        BookCartComponent,
     ],
     imports: [
         BrowserModule,
@@ -56,7 +59,9 @@ import {AngularFireModule} from '@angular/fire';
                 disable_exponential_cooldowntime: false,
                 context: 'signup',
             }
-        )
+        ),
+        NgxPaginationModule,
+        FormsModule
     ],
     providers: [ authInterceptorProviders,
         JwtHelperService,
