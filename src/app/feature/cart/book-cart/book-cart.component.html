@@ -7,83 +7,76 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col" class="h5">Shopping Bag</th>
-                            <th scope="col">Format</th>
+
+                            <th scope="col" class="bag__container">
+                                <div class="form-check mb-3 mb-md-0 check__product">
+                                <input class="form-check-input" type="checkbox" value="" id="loginCheck" (change)="isAllChecked()" [checked]="checkAll" />
+                            </div>
+                                    Shopping Bag</th>
+                            <th scope="col">Unit price</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Price</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                        <tr *ngFor="let cartBook of cartBookList; let i=index">
                             <th scope="row">
-                                <div class="d-flex align-items-center">
-                                    <img src="https://i.imgur.com/2DsA49b.webp" class="img-fluid rounded-3"
-                                         style="width: 120px;" alt="Book">
-                                    <div class="flex-column ms-4">
-                                        <p class="mb-2">Thinking, Fast and Slow</p>
-                                        <p class="mb-0">Daniel Kahneman</p>
+                                <div class="product__container">
+                                    <div class="form-check mb-3 mb-md-0 check__product">
+                                        <input class="form-check-input" type="checkbox" value="" (change)="isChecked(i)" [checked]="checkList[i]" />
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <img [src]="cartBook.bookId.bookImage" [routerLink]="['/book/detail', cartBook.bookId.bookId]" class="img-fluid rounded-3"
+                                                 style="width: 120px;" alt="Book">
+<!--                                            <div style="cursor: pointer" -->
+<!--                                                 class="fade"></div>-->
+                                        </div>
+
+
+                                        <div class="flex-column ms-4">
+                                            <p class="mb-2" [routerLink]="['/book/detail', cartBook.bookId.bookId]">{{cartBook.bookId.bookName}}</p>
+                                            <p class="mb-0">{{cartBook.bookId.bookAuthorId.authorName}}</p>
+                                        </div>
                                     </div>
                                 </div>
+
                             </th>
                             <td class="align-middle">
-                                <p class="mb-0" style="font-weight: 500;">Digital</p>
+                                <p class="mb-0" style="font-weight: 500;" *ngIf="cartBook.bookId.bookPromotionId.promotionId <= 1">{{cartBook.bookId.bookPrice}} đ</p>
+                                <p class="mb-0" style="font-weight: 500;" *ngIf="cartBook.bookId.bookPromotionId.promotionId > 1">{{cartBook.bookId.bookPrice - cartBook.bookId.bookPrice * cartBook.bookId.bookPromotionId.promotion_percent / 100}} đ</p>
                             </td>
                             <td class="align-middle">
                                 <div class="d-flex flex-row">
                                     <button class="btn btn-link px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                            *ngIf="cartBook.cartId.cartQuantity != 1"
+                                            (click)="subBook(cartBook)">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button class="btn btn-link px-2"
+                                            *ngIf="cartBook.cartId.cartQuantity == 1"
+                                            (click)="showInfoCartDelete(cartBook)" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
                                         <i class="fas fa-minus"></i>
                                     </button>
 
                                     <div class="quantity__content">
-                                        <input id="form1" min="0" name="quantity" value="2" type="number"
+                                        <input (change)="getQuantity($event.target, cartBook)"
+                                               [value]="cartBook.cartId.cartQuantity" min="0" name="quantity" value="2" type="number"
                                                class="form-control form-control-sm" style="width: 50px;" />
                                     </div>
 
                                     <button class="btn btn-link px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                            [disabled]="cartBook.cartId.cartQuantity >= cartBook.bookId.bookQuantity"
+                                            (click)="addBook(cartBook)">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
                             </td>
                             <td class="align-middle">
-                                <p class="mb-0" style="font-weight: 500;">$9.99</p>
+                                <p class="mb-0" style="font-weight: 500;">{{cartBook.cartId.cartTotalMoney}} đ</p>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row" class="border-bottom-0">
-                                <div class="d-flex align-items-center">
-                                    <img src="https://i.imgur.com/Oj1iQUX.webp" class="img-fluid rounded-3"
-                                         style="width: 120px;" alt="Book">
-                                    <div class="flex-column ms-4">
-                                        <p class="mb-2">Homo Deus: A Brief History of Tomorrow</p>
-                                        <p class="mb-0">Yuval Noah Harari</p>
-                                    </div>
-                                </div>
-                            </th>
-                            <td class="align-middle border-bottom-0">
-                                <p class="mb-0" style="font-weight: 500;">Paperback</p>
-                            </td>
-                            <td class="align-middle border-bottom-0">
-                                <div class="d-flex flex-row">
-                                    <button class="btn btn-link px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
 
-                                    <input id="form1" min="0" name="quantity" value="1" type="number"
-                                           class="form-control form-control-sm" style="width: 50px;" />
-
-                                    <button class="btn btn-link px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </td>
-                            <td class="align-middle border-bottom-0">
-                                <p class="mb-0" style="font-weight: 500;">$13.50</p>
-                            </td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -157,27 +150,27 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-xl-3">
-                                <div class="d-flex justify-content-between" style="font-weight: 500;">
+                                <div class="d-flex justify-content-between" style="font-weight: 500;" >
                                     <p class="mb-2">Subtotal</p>
-                                    <p class="mb-2">$23.49</p>
+                                    <p class="mb-2">{{totalMoneyBeforePromotion}} đ</p>
                                 </div>
 
-                                <div class="d-flex justify-content-between" style="font-weight: 500;">
-                                    <p class="mb-0">Shipping</p>
-                                    <p class="mb-0">$2.99</p>
+                                <div class="d-flex justify-content-between" style="font-weight: 500;" >
+                                    <p class="mb-0">Save</p>
+                                    <p class="mb-0">{{totalMoneyBeforePromotion - totalMoney}} đ</p>
                                 </div>
 
                                 <hr class="my-4">
 
                                 <div class="d-flex justify-content-between mb-4" style="font-weight: 500;">
                                     <p class="mb-2">Total (tax included)</p>
-                                    <p class="mb-2">$26.48</p>
+                                    <p class="mb-2">{{totalMoney}} đ</p>
                                 </div>
 
                                 <button type="button" class="button button__content">
                                     <div class="d-flex justify-content-between">
-                                        <span>Checkout</span>
-                                        <span>$26.48</span>
+                                        <span>Checkout : </span>
+                                        <span>&nbsp;&nbsp;{{totalMoney}} đ</span>
                                     </div>
                                 </button>
 
@@ -191,3 +184,20 @@
         </div>
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Remove book in cart</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">Are you sure you want to remove {{cartDelete.bookId.bookName}} from your shopping cart?</div>
+            <div class="modal-footer">
+                <button type="button" class="button button__close btn-secondary" data-mdb-dismiss="modal">Close</button>
+                <button type="button" class="button button__content btn-primary" (click)="deleteCart(cartDelete.cartId.cartId)">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>

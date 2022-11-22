@@ -26,6 +26,7 @@ import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BookCartComponent } from './feature/cart/book-cart/book-cart.component';
+import {NotifierModule} from 'angular-notifier';
 
 @NgModule({
     declarations: [
@@ -49,6 +50,7 @@ import { BookCartComponent } from './feature/cart/book-cart/book-cart.component'
         ReactiveFormsModule,
         AccountModule,
         HttpClientModule,
+        NotifierModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         NgGoogleOneTapModule.config(
             {
@@ -63,7 +65,7 @@ import { BookCartComponent } from './feature/cart/book-cart/book-cart.component'
         NgxPaginationModule,
         FormsModule
     ],
-    providers: [ authInterceptorProviders,
+    providers: [HeaderComponent, authInterceptorProviders,
         JwtHelperService,
         {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
         { provide: APP_BASE_HREF, useValue: '/'}

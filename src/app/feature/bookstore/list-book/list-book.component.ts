@@ -4,6 +4,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {TokenStorageService} from '../../../service/security/token-storage.service';
 import {IBook} from '../../../model/book/ibook';
 import {BookService} from '../../../service/book/book.service';
+import {NotifierService} from 'angular-notifier';
+import {HeaderComponent} from '../../../share/header/header.component';
+import {CartService} from '../../../service/cart/cart.service';
 
 @Component({
   selector: 'app-list-book',
@@ -12,6 +15,13 @@ import {BookService} from '../../../service/book/book.service';
 })
 export class ListBookComponent implements OnInit {
     quantityCart: number;
+    accountId: number;
+    private roles: string[];
+    isLoggedIn = false;
+    showAdminBoard = false;
+    showCustomer = false;
+    userName: string;
+
     bookList: IBook[] = [];
     books: IBook = {};
     id: number;
@@ -23,13 +33,28 @@ export class ListBookComponent implements OnInit {
     constructor(
         private bookService: BookService,
         private router: Router,
+        private cartService: CartService,
         private activatedRoute: ActivatedRoute,
         private tokenStorageService: TokenStorageService,
+        private notification: NotifierService,
+        private headerComponent: HeaderComponent
     ) { }
 
     ngOnInit(): void {
         // this.getListTopBook();
         this.getAllTopBook(this.page);
+        this.isLoggedIn = !!this.tokenStorageService.getToken();
+        if (this.isLoggedIn) {
+            this.userName = this.tokenStorageService.getUser().account.username;
+            this.roles = this.tokenStorageService.getUser().account.roles[0].roleName;
+            // kiểm tra role
+            this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+            this.showCustomer = this.roles.includes('ROLE_CUSTOMER');
+
+            console.log('roles: ' + this.roles);
+        }
+
+        this.accountId = this.tokenStorageService.getUser().account.accountId;
     }
 
     getListCart() {
@@ -52,6 +77,18 @@ export class ListBookComponent implements OnInit {
 
     getListTopBook() {
         // this.bookService.getTopAllBook(this.thePageNumber - 1, this.thePageSize).subscribe(this.processResult());
+    }
+
+    addBook(bookAdd: IBook) {
+        bookAdd.bookQuantity = 1;
+        this.cartService.addBook(this.accountId, bookAdd).subscribe(() => {
+        }, (error) => {
+            this.notification.notify('error', error.error);
+        }, () => {
+            this.notification.notify('success', 'Thêm sách vào giỏ hàng thành công');
+            this.headerComponent.getQuantityCart();
+        });
+        console.log(this.accountId);
     }
     getAllTopBook(page: number) {
         this.page = page;

@@ -41,7 +41,7 @@ Version: 1.1
 /* Fonts */
 :root {
     --body-font           : "Raleway", sans-serif;
-    --heading-font        : "Prata", Georgia, serif;
+    --heading-font        : "Prata", Prata, serif;
     --secondary-font      : "Playfair Display", Georgia, serif;
 }
 

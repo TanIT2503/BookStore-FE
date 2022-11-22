@@ -36,4 +36,44 @@ input, textarea, select, fieldset {
 
 .payment__container{
     background: var(--accent-color2) !important;
+
+    margin-top: 40px;
+}
+
+.product__container, .check__product{
+    display: flex;
+}
+
+.check__product{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.bag__container{
+    color: #000;
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+}
+
+.button__content{
+    border-radius: 40px;
+    width: auto;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.button__content:hover{
+    background: #b28b6c;
+}
+
+.button__close{
+    background: var(--accent-color2);
+    border-radius: 40px;
+    width: auto;
+    height: 40px;
+    margin-right: 10px;
 }
