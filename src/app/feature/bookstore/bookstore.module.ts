@@ -7,6 +7,7 @@ import { ListCategoryBookComponent } from './list-category-book/list-category-bo
 import {NgxPaginationModule} from 'ngx-pagination';
 import { SearchBookComponent } from './search-book/search-book.component';
 import { PromotionsBookComponent } from './promotions-book/promotions-book.component';
+import {NgxNotificationModule} from '@flywine93/ngx-notification';
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import { PromotionsBookComponent } from './promotions-book/promotions-book.compo
   imports: [
     CommonModule,
     BookstoreRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ]
 })
 export class BookstoreModule { }

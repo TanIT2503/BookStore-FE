@@ -25,7 +25,7 @@
                                     <div class="form-check mb-3 mb-md-0 check__product">
                                         <input class="form-check-input" type="checkbox" value="" (change)="isChecked(i)" [checked]="checkList[i]" />
                                     </div>
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center book__content">
                                         <div>
                                             <img [src]="cartBook.bookId.bookImage" [routerLink]="['/book/detail', cartBook.bookId.bookId]" class="img-fluid rounded-3"
                                                  style="width: 120px;" alt="Book">
@@ -34,7 +34,7 @@
                                         </div>
 
 
-                                        <div class="flex-column ms-4">
+                                        <div class="flex-column ms-4 name__text" >
                                             <p class="mb-2" [routerLink]="['/book/detail', cartBook.bookId.bookId]">{{cartBook.bookId.bookName}}</p>
                                             <p class="mb-0">{{cartBook.bookId.bookAuthorId.authorName}}</p>
                                         </div>
@@ -196,7 +196,7 @@
             <div class="modal-body">Are you sure you want to remove {{cartDelete.bookId.bookName}} from your shopping cart?</div>
             <div class="modal-footer">
                 <button type="button" class="button button__close btn-secondary" data-mdb-dismiss="modal">Close</button>
-                <button type="button" class="button button__content btn-primary" (click)="deleteCart(cartDelete.cartId.cartId)">Remove</button>
+                <button type="button" class="button button__content btn-primary" data-mdb-dismiss="modal" (click)="deleteCart(cartDelete.cartId.cartId)">Remove</button>
             </div>
         </div>
     </div>

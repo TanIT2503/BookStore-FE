@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~9.0.2",
+    "@angular/animations": "^9.0.7",
     "@angular/common": "~9.0.2",
     "@angular/compiler": "~9.0.2",
     "@angular/core": "~9.0.2",
@@ -23,6 +23,8 @@
     "@auth0/angular-jwt": "^5.0.2",
     "angular-notifier": "^7.0.0",
     "firebase": "^8.6.7",
+    "@flywine93/ngx-autounsubscrb": "0.0.5",
+    "@flywine93/ngx-notification": "0.0.3",
     "ng-google-one-tap": "^2.1.5",
     "ngx-pagination": "^5.1.1",
     "rxjs": "~6.5.4",

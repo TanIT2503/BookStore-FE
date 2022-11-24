@@ -27,6 +27,8 @@ import {AngularFireModule} from '@angular/fire';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BookCartComponent } from './feature/cart/book-cart/book-cart.component';
 import {NotifierModule} from 'angular-notifier';
+import {NgxNotificationModule} from '@flywine93/ngx-notification';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -63,7 +65,9 @@ import {NotifierModule} from 'angular-notifier';
             }
         ),
         NgxPaginationModule,
-        FormsModule
+        FormsModule,
+        NgxNotificationModule,
+        BrowserAnimationsModule
     ],
     providers: [HeaderComponent, authInterceptorProviders,
         JwtHelperService,

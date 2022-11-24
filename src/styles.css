@@ -1367,15 +1367,17 @@ img.post-image {
     background-color: #E5E3DA;
 }
 #billboard button.prev.slick-arrow {
-    left: 110px;
+    /*left: 110px;*/
 }
 #billboard button.next.slick-arrow {
-    right: 110px;
+    right: 1px;
 }
 #billboard .slick-arrow i.icon {
     color: #8C8C8C;
 }
-
+.banner-image{
+    width: 500px;
+}
 @media screen and (max-width: 1366px) {
     #billboard button.prev.slick-arrow {
         left: 0;

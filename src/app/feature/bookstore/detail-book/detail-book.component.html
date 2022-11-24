@@ -1,3 +1,20 @@
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="colored">
+                    <h1 class="page-title">Detail Book</h1>
+                    <div class="breadcum-items">
+                        <span class="item"><a href="index.html">Home /</a></span>
+                        <span class="item colored" ><a routerLink="/"> Shop /</a> </span>
+                        <span class="item colored"> {{book.bookName}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--site-banner-->
+
 <section class="bg-sand padding-large">
     <div class="container">
         <div class="row">
@@ -15,7 +32,7 @@
                     <p>
                         {{book.bookContent}}
                     </p>
-                    <button type="submit" name="add-to-cart" value="27545" class="button button__content">Add to cart</button>
+                    <button type="submit" name="add-to-cart" value="27545" class="button button__content" (click)="addBook(book)">Add to cart</button>
 
                 </div>
             </div>
