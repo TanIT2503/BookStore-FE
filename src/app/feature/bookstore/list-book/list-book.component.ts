@@ -4,9 +4,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {TokenStorageService} from '../../../service/security/token-storage.service';
 import {IBook} from '../../../model/book/ibook';
 import {BookService} from '../../../service/book/book.service';
-import {NotifierService} from 'angular-notifier';
 import {HeaderComponent} from '../../../share/header/header.component';
 import {CartService} from '../../../service/cart/cart.service';
+import {NotificationBarService, NotificationType} from 'ngx-notification-bar';
+import {NgxNotificationService} from '@flywine93/ngx-notification';
 
 @Component({
   selector: 'app-list-book',
@@ -36,7 +37,7 @@ export class ListBookComponent implements OnInit {
         private cartService: CartService,
         private activatedRoute: ActivatedRoute,
         private tokenStorageService: TokenStorageService,
-        private notification: NotifierService,
+        private notification: NgxNotificationService,
         private headerComponent: HeaderComponent
     ) { }
 
@@ -57,35 +58,15 @@ export class ListBookComponent implements OnInit {
         this.accountId = this.tokenStorageService.getUser().account.accountId;
     }
 
-    getListCart() {
-        // this.cartService.getAllCart().subscribe(data => {
-        //     if (data == null) {
-        //         this.quantityCart = 0;
-        //     } else {
-        //         this.quantityCart = data.length;
-        //     }
-        // });
-    }
-
-    // getAllListBook() {
-    //     if (this.keywordSearch !== undefined) {
-    //         this.search(this.keywordSearch);
-    //     } else {
-    //         this.getListTopBook();
-    //     }
-    // }
-
-    getListTopBook() {
-        // this.bookService.getTopAllBook(this.thePageNumber - 1, this.thePageSize).subscribe(this.processResult());
-    }
-
     addBook(bookAdd: IBook) {
         bookAdd.bookQuantity = 1;
         this.cartService.addBook(this.accountId, bookAdd).subscribe(() => {
         }, (error) => {
-            this.notification.notify('error', error.error);
+            // @ts-ignore
+            this.notification.notify(NotificationType.Info, 'error', error.error);
         }, () => {
-            this.notification.notify('success', 'Thêm sách vào giỏ hàng thành công');
+            // @ts-ignore
+            this.notification.notify(NotificationType.Info, 'Success', 'Product added to cart successfully!', 3000);
             this.headerComponent.getQuantityCart();
         });
         console.log(this.accountId);

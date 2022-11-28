@@ -17,16 +17,17 @@ import { IndexComponent } from './share/home/index/index.component';
 import {AccountModule} from './feature/account/account.module';
 import {authInterceptorProviders} from './helpers/auth.interceptor';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
-import {APP_BASE_HREF} from '@angular/common';
+import {APP_BASE_HREF, CommonModule} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
 import { NgGoogleOneTapModule } from 'ng-google-one-tap';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BookCartComponent } from './feature/cart/book-cart/book-cart.component';
-import {NotifierModule} from 'angular-notifier';
+import {NgxNotificationModule} from '@flywine93/ngx-notification';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 @NgModule({
     declarations: [
@@ -45,12 +46,12 @@ import {NotifierModule} from 'angular-notifier';
         BookCartComponent,
     ],
     imports: [
+        CommonModule,
         BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
         AccountModule,
         HttpClientModule,
-        NotifierModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         NgGoogleOneTapModule.config(
             {
@@ -63,9 +64,12 @@ import {NotifierModule} from 'angular-notifier';
             }
         ),
         NgxPaginationModule,
-        FormsModule
+        FormsModule,
+        NgxNotificationModule,
+        BrowserAnimationsModule
+
     ],
-    providers: [HeaderComponent, authInterceptorProviders,
+    providers: [HeaderComponent, BookCartComponent, authInterceptorProviders,
         JwtHelperService,
         {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
         { provide: APP_BASE_HREF, useValue: '/'}

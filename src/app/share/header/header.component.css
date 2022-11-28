@@ -24,7 +24,17 @@
 
 }
 
+.button__content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .button__container{
     display: flex;
@@ -60,4 +70,8 @@
 
 .dropdown-menu li{
     padding-right: 0;
+}
+
+.cart__quantity{
+    padding-left: 10px !important;
 }

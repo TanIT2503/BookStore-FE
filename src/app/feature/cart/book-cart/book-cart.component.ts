@@ -5,7 +5,7 @@ import {ICart} from '../../../model/cart/icart';
 import {TokenStorageService} from '../../../service/security/token-storage.service';
 import {CartService} from '../../../service/cart/cart.service';
 import {CustomerService} from '../../../service/account/customer.service';
-import {NotifierService} from 'angular-notifier';
+import {NgxNotificationService, NotificationType} from '@flywine93/ngx-notification';
 
 @Component({
     selector: 'app-book-cart',
@@ -36,9 +36,9 @@ export class BookCartComponent implements OnInit {
     cartPaymentList: ICart[] = [];
     constructor(
         private tokenStorageService: TokenStorageService,
-        private notification: NotifierService,
         private cartService: CartService,
-        private customerService: CustomerService
+        private customerService: CustomerService,
+        private notification: NgxNotificationService,
     ) {
     }
 
@@ -161,11 +161,8 @@ export class BookCartComponent implements OnInit {
             () => {
             },
             () => {
-            },
-            () => {
-                this.findAllCartBook();
-                // this.getImportListNotPagination();
-                this.notification.notify('success', 'Xoá sản phẩm thành công');
+            }, () => {
+                this.notification.notify(NotificationType.INFO, 'Success', 'Product added to cart successfully!', 3000);
             });
     }
 
@@ -178,9 +175,6 @@ export class BookCartComponent implements OnInit {
 
         this.cartService.paymentCart(this.cartPaymentList).subscribe(data => {
         }, () => {
-        }, () => {
-            this.notification.notify('success', 'Thanh toán thành công');
-            window.location.assign('/cart');
         });
     }
 }
