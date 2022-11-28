@@ -29,7 +29,7 @@
                         <span class="price colored ">New price: {{book.bookPrice-(book.bookPrice*book.bookPromotionId.promotion_percent*0.01)}}đ</span>
                         <span class="price colored old__price">Old price: {{book.bookPrice}}đ</span>
                         <button type="button" class="button button__content" data-product-tile="add-to-cart" [routerLink]="['/detail/', book.bookId]">Detail</button>
-                        <button type="button" class="button button__content" data-product-tile="add-to-cart" (click)="addBook(book)">Add to Cart</button>
+                        <button type="button" class="button button__content" data-product-tile="add-to-cart" >Add to Cart</button>
                     </figcaption>
                 </figure>
             </div>

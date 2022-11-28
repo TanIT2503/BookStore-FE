@@ -6,12 +6,13 @@ import {IBook} from '../../../model/book/ibook';
 import {BookService} from '../../../service/book/book.service';
 import {HeaderComponent} from '../../../share/header/header.component';
 import {CartService} from '../../../service/cart/cart.service';
-import {NgxNotificationService, NotificationType} from '@flywine93/ngx-notification';
+import {NotificationBarService, NotificationType} from 'ngx-notification-bar';
+import {NgxNotificationService} from '@flywine93/ngx-notification';
 
 @Component({
-    selector: 'app-list-book',
-    templateUrl: './list-book.component.html',
-    styleUrls: ['./list-book.component.css']
+  selector: 'app-list-book',
+  templateUrl: './list-book.component.html',
+  styleUrls: ['./list-book.component.css']
 })
 export class ListBookComponent implements OnInit {
     quantityCart: number;
@@ -65,7 +66,7 @@ export class ListBookComponent implements OnInit {
             this.notification.notify(NotificationType.Info, 'Error', error.error);
         }, () => {
             // @ts-ignore
-            this.notification.notify(NotificationType.SUCCESS, 'Success', 'Product added to cart successfully!', 3000);
+            this.notification.notify(NotificationType.Info, 'Success', 'Product added to cart successfully!', 3000);
             this.headerComponent.getQuantityCart();
         });
         console.log(this.accountId);
@@ -85,4 +86,27 @@ export class ListBookComponent implements OnInit {
             }
         );
     }
+
+    // processResult() {
+    //     return (data) => {
+    //         this.bookList = data.content; //
+    //         this.thePageNumber = data.number + 1;
+    //         this.thePageSize = data.size;
+    //         this.theTotalElements = data.totalElements;
+    //         this.processItemPerPage();
+    //     };
+    // }
+    //
+    // processItemPerPage() {
+    //     if (this.thePageNumber * this.thePageSize > this.theTotalElements) {
+    //         this.itemPerPage = this.theTotalElements;
+    //     } else {
+    //         this.itemPerPage = this.thePageNumber * this.thePageSize;
+    //     }
+    // }
+
+    // search(value: string) {
+    //     console.log(value);
+    //     this.bookList.getAllMaterialSearch(this.thePageNumber - 1, this.thePageSize, value).subscribe(this.processResult());
+    // }
 }
