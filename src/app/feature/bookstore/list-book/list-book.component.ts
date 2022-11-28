@@ -62,7 +62,7 @@ export class ListBookComponent implements OnInit {
         this.cartService.addBook(this.accountId, bookAdd).subscribe(() => {
         }, (error) => {
             // @ts-ignore
-            this.notification.notify(NotificationType.Info, 'error', error.error);
+            this.notification.notify(NotificationType.Info, 'Error', error.error);
         }, () => {
             // @ts-ignore
             this.notification.notify(NotificationType.SUCCESS, 'Success', 'Product added to cart successfully!', 3000);

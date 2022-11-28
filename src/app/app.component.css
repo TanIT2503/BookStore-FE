@@ -1,3 +1,6 @@
 .ngx-pagination .pagination-previous a::before, .ngx-pagination .pagination-previous.disabled::before{
     content: none !important;
 }
+.paypal-button .paypal-button-number-0 .paypal-button-layout-vertical .paypal-button-shape-rect .paypal-button-number-multiple .paypal-button-env-sandbox .paypal-button-color-gold .paypal-button-text-color-black .paypal-logo-color-blue{
+    border-radius: 30px !important;
+}

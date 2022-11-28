@@ -26,7 +26,8 @@
             <div class="col-md-8 pl-5">
                 <div class="product-detail">
                     <h1>{{book.bookName}}</h1>
-                    <p>{{book.bookAuthorId.authorName}}</p>
+                    <p>Author: {{book.bookAuthorId.authorName}}</p>
+                    <p>Quantity: {{book.bookQuantity}}</p>
                     <span class="price colored ">New price: {{book.bookPrice-(book.bookPrice*book.bookPromotionId.promotion_percent*0.01)}}đ</span>
                     <span class="price colored old__price">Old price: {{book.bookPrice}}đ</span>
                     <p>

@@ -1878,3 +1878,7 @@ footer#footer {
 .ngx-pagination a:hover, .ngx-pagination button:hover{
     border-radius: 6px !important;
 }
+
+.paypal-button.paypal-button-shape-rect{
+    border-radius: 30px !important;
+}

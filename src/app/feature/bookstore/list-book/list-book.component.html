@@ -22,12 +22,16 @@
                 <figure class="product-style" *ngFor="let book of bookList | paginate: {itemsPerPage: size, currentPage: page, totalItems: theTotalElements}">
                     <img src="{{book.bookImage}}" alt="Books" class="product-item">
                     <figcaption>
-                        <h3 class="name__text">{{book.bookName}}</h3>
-                        <p>{{book.bookAuthorId.authorName}}</p>
-                        <span class="price colored ">New price: {{book.bookPrice-(book.bookPrice*book.bookPromotionId.promotion_percent*0.01)}}đ</span>
-                        <span class="price colored old__price">Old price: {{book.bookPrice}}đ</span>
-                        <button type="button" class="button button__content" data-product-tile="add-to-cart" [routerLink]="['/detail/', book.bookId]">Detail</button>
-                        <button type="button" class="button button__content" data-product-tile="add-to-cart" (click)="addBook(book)" >Add to Cart</button>
+                        <div>
+                            <h3 class="name__text">{{book.bookName}}</h3>
+                            <p>{{book.bookAuthorId.authorName}}</p>
+                            <span class="price colored ">New price: {{book.bookPrice-(book.bookPrice*book.bookPromotionId.promotion_percent*0.01)}}đ</span>
+                            <span class="price colored old__price">Old price: {{book.bookPrice}}đ</span>
+                        </div>
+                        <div>
+                            <button type="button" class="button button__content" data-product-tile="add-to-cart" [routerLink]="['/detail/', book.bookId]">Detail</button>
+                            <button type="button" class="button button__content" data-product-tile="add-to-cart" (click)="addBook(book)" >Add to Cart</button>
+                        </div>
                     </figcaption>
                 </figure>
             </div>

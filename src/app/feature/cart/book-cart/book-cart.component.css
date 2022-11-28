@@ -30,6 +30,12 @@ input, textarea, select, fieldset {
     height: 50px;
 }
 
+.button-modal{
+    width: 150px !important;
+    border-radius: 50px;
+    height: 50px;
+}
+
 .button__content:hover{
     background: #b28966;
 }
@@ -58,14 +64,29 @@ input, textarea, select, fieldset {
     /*justify-content: center;*/
     align-items: center;
 }
-
+.ng-star-inserted{
+    /*display: flex !important;*/
+    justify-content: center !important;
+    align-items: center !important;
+}
 .button__content{
     border-radius: 40px;
-    width: auto;
+    width: 100%;
     height: 40px;
     margin-right: 10px;
+    max-width: 100%;
 }
 
+.button__remove{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    max-width: 100%;
+}
 .button__content:hover{
     background: #b28b6c;
 }
@@ -91,9 +112,6 @@ input, textarea, select, fieldset {
     outline: 0;
 }
 
-.book__content{
-    width: 800px;
-}
 
 .name__text{
     display: inline-block;
@@ -102,3 +120,16 @@ input, textarea, select, fieldset {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+button:disabled,
+button[disabled] {
+    background: #c9c9c9 !important;
+    color: white;
+    cursor: pointer;
+    pointer-events: none;
+}
+
+.modal-title{
+    font: inherit;
+}
+

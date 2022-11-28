@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ICartBook} from '../../../model/cart/icart-book';
 import {ICustomer} from '../../../model/customer/icustomer';
 import {ICart} from '../../../model/cart/icart';
 import {TokenStorageService} from '../../../service/security/token-storage.service';
 import {CartService} from '../../../service/cart/cart.service';
 import {CustomerService} from '../../../service/account/customer.service';
-import {NotifierService} from 'angular-notifier';
+import {NgxNotificationService, NotificationType} from '@flywine93/ngx-notification';
+import {render} from 'creditcardpayments/creditCardPayments';
+import {HeaderComponent} from '../../../share/header/header.component';
 
 @Component({
     selector: 'app-book-cart',
@@ -15,6 +17,8 @@ import {NotifierService} from 'angular-notifier';
 export class BookCartComponent implements OnInit {
 // cartList: ICart[] = [];
     // cartForm: FormGroup;
+    private roles: string[];
+    isLoggedIn = false;
     cartBookList: ICartBook[] = [];
     accountId: number;
     checkList: boolean[] = [];
@@ -34,12 +38,25 @@ export class BookCartComponent implements OnInit {
 
     customer: ICustomer = {};
     cartPaymentList: ICart[] = [];
+    userName: string;
+
     constructor(
         private tokenStorageService: TokenStorageService,
-        private notification: NotifierService,
         private cartService: CartService,
-        private customerService: CustomerService
+        private customerService: CustomerService,
+        private notification: NgxNotificationService,
+        private headerComponent: HeaderComponent
     ) {
+        render(
+            {
+                id: '#myPaypalButtons',
+                currency: 'USD',
+                value: '100.00',
+                onApprove: (details) => {
+                    alert('Transaction successfull');
+                }
+            }
+        );
     }
 
     ngOnInit(): void {
@@ -53,6 +70,13 @@ export class BookCartComponent implements OnInit {
         this.findAllCartBook();
 
         this.getTotalMoney();
+
+        this.isLoggedIn = !!this.tokenStorageService.getToken();
+        if (this.isLoggedIn) {
+            this.userName = this.tokenStorageService.getUser().account.username;
+            this.roles = this.tokenStorageService.getUser().account.roles[0].roleName;
+            console.log('roles: ' + this.roles);
+        }
     }
 
     findAllCartBook() {
@@ -165,22 +189,24 @@ export class BookCartComponent implements OnInit {
             () => {
                 this.findAllCartBook();
                 // this.getImportListNotPagination();
-                this.notification.notify('success', 'Xoá sản phẩm thành công');
+                this.headerComponent.getQuantityCart()
             });
+
     }
 
     payment() {
         this.cartBookList.forEach((check, index) => {
             if (this.checkList[index]) {
-                this.cartPaymentList.push(this.cartBookList[index].cartId);
+                this.cartPaymentList.push((this.cartBookList[index].cartId));
+                this.cartService.paymentCart(this.cartPaymentList).subscribe(data => {
+                }, () => {
+                }, () => {
+                    this.notification.notify(NotificationType.SUCCESS, 'Success', 'Product payment successfully!', 3000);
+                    window.location.assign('/cart');
+                });
+            } else {
+                this.notification.notify(NotificationType.ERROR, 'Error', 'Please select the product to pay!');
             }
-        });
-
-        this.cartService.paymentCart(this.cartPaymentList).subscribe(data => {
-        }, () => {
-        }, () => {
-            this.notification.notify('success', 'Thanh toán thành công');
-            window.location.assign('/cart');
         });
     }
 }

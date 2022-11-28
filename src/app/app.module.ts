@@ -53,21 +53,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         AccountModule,
         HttpClientModule,
         NotifierModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        NgGoogleOneTapModule.config(
-            {
-                client_id: environment.clientId,
-                cancel_on_tap_outside: false,
-                authvalidate_by_googleapis: false,
-                auto_select: false,
-                disable_exponential_cooldowntime: false,
-                context: 'signup',
-            }
-        ),
         NgxPaginationModule,
         FormsModule,
         NgxNotificationModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
     ],
     providers: [HeaderComponent, authInterceptorProviders,
         JwtHelperService,
