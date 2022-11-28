@@ -77,3 +77,28 @@ input, textarea, select, fieldset {
     height: 40px;
     margin-right: 10px;
 }
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: var(--light-color) !important;
+    background-clip: padding-box;
+    border: none !important;
+    border-radius: 20px !important;
+    outline: 0;
+}
+
+.book__content{
+    width: 800px;
+}
+
+.name__text{
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

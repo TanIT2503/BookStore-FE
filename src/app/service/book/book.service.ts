@@ -26,6 +26,10 @@ export class BookService {
         return this.http.get<IBook[]>(`${this.API_URL}/latest?page=` + page);
     }
 
+    getOneNewBook(): Observable<IBook[]> {
+        return this.http.get<IBook[]>(this.API_URL + '/one-book');
+    }
+
     getAll(page: number, search: string): Observable<PageBook> {
         return this.http.get<PageBook>(this.API_URL + '?page=' + page + '&&search=' + search);
     }
