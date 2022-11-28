@@ -6,7 +6,6 @@ import {IBook} from '../../../model/book/ibook';
 import {BookService} from '../../../service/book/book.service';
 import {HeaderComponent} from '../../../share/header/header.component';
 import {CartService} from '../../../service/cart/cart.service';
-import {NotificationBarService, NotificationType} from 'ngx-notification-bar';
 import {NgxNotificationService} from '@flywine93/ngx-notification';
 
 @Component({
